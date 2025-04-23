@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Buy Product</title>
+
+
+  <style>
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+
+    div {
+      border: 1px solid black;
+      padding: 15px;
+      max-width: 800px;
+      margin: 20px auto;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 10px 0;
+      border: 1px solid black;
+      cursor: pointer;
+    }
+    a {
+      /*text-decoration: none;*/
+    }
+  </style>
+
+
+</head>
+<body>
+
+<h1>Buy Product</h1>
+
+<p th:if="${loggedIn == false}">
+  <a th:href="@{/logInPage}">Login</a><br>
+</p>
+<div id="logInStatus" th:attr="data-logIn=${loggedIn}" style="display: none;"></div>
+<div>
+  <h2 id="product_name" th:text="${product.name}"></h2>
+  <p id="product_description" th:text="${product.description}"></p>
+  <p>Price: $<span id="product_price" th:text="${product.price}"></span></p>
+
+  <form action="/goToPayment" method="get">
+    <input type="hidden" name="itemId" th:value="${product.id}">
+    <input type="hidden" name="amount" th:value="${product.price}">
+    <button type="submit">Make a Purchase</button>
+  </form>
+
+
+</div>
+
+<!--<form th:action="@{/purchase}" method="post">-->
+<!--  <input type="hidden" name="product_id" th:value="${product.id}" />-->
+  <span id="product_id" th:text="${product.id}" style="display: none;"></span>
+<!--  <button type="submit" >Make purchase</button>-->
+  <button type="submit" onclick="addToBasket()">Add to shopping Cart</button>
+<!--</form>-->
+
+<br>
+<p>
+  <a th:href= "@{/}">back to home page</a><br>
+</p>
+<script defer src="/products.js"></script>
+</body>
+</html>

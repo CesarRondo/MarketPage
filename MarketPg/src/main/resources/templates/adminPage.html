@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Page</title>
+
+  <style>
+    /* square */
+    .product-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    /*content inside */
+    .product {
+      width: 18%;
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+      box-sizing: border-box;
+    }
+
+    .product h3 {
+      margin: 5px 0;
+    }
+
+    .product p {
+      font-weight: bold;
+    }
+  </style>
+
+</head>
+<body>
+
+<h1>Admin Page</h1>
+<h3>Add new product</h3>
+
+<form th:action="@{/admin/createProduct}" method="post">
+  <!-- Product Name -->
+  <label for="name">Product Name:</label>
+  <input type="text" id="name" name="name" required>
+  <br><br>
+
+  <!-- Product Description (Bigger Box) -->
+  <label for="description">Description:</label>
+  <textarea id="description" name="description" rows="5" cols="30" required></textarea>
+  <br><br>
+
+  <!-- Product Price -->
+  <label for="price">Price ($):</label>
+  <input type="number" id="price" name="price" required>
+  <br><br>
+
+  <button type="submit">Create Product</button>
+</form>
+
+<br>
+<a th:href= "@{/}">back to home page</a><br>
+<br>
+<br>
+<a th:href= "@{/admin/ordersPage}">See orders</a><br>
+<br>
+<br>
+
+
+<h3>Edit products </h3>
+<div class="product-container">
+<div th:each="product : ${products}" class="product">
+  <!--    <img th:src="${product.imageUrl}" alt="Product Image">-->
+  <h4 th:text="${product.name}"></h4>
+  <p th:text="'$' + ${product.price}"></p>
+  <a th:href="@{/admin/editProduct/{id}(id=${product.id})}">Edit</a>
+</div>
+</div>
+
+
+</body>
+</html>

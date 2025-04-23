@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order History</title>
+</head>
+<body>
+
+<h2>Order History</h2>
+
+<table>
+  <thead>
+  <tr>
+    <th style="padding: 10px;" >Order Id</th>
+    <th style="padding: 10px;" >Product Name</th>
+    <th style="padding: 10px;">Amount</th>
+    <th style="padding: 10px;">Price</th>
+    <th style="padding: 10px;">Status</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="purchase : ${purchases}">
+    <td style="padding: 10px;" th:text="${purchase.purchase_id}"></td>
+    <td style="padding: 10px;" th:text="${purchase.product_name}"></td>
+    <td style="padding: 10px;" th:text="${purchase.amount}"></td>
+    <td style="padding: 10px;" th:text="${purchase.price+' $'}"></td>
+    <td style="padding: 10px;" th:text="${purchase.status}" id="status"></td>
+    <td style="padding: 10px">
+<!--      <button th:if="${purchase.status == 'Delivering'}" onclick="confirmDelivery()" id="confirmButton">Confirm Delivery</button>-->
+      <form th:action="@{/admin/confirmDelivery}" method="post">
+        <input type="hidden" name="purchaseId" th:value="${purchase.purchase_id}">
+        <button type="submit" th:if="${purchase.status == 'Delivering'}">
+          Confirm Delivery
+        </button>
+      </form>
+
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<p th:if="${#lists.isEmpty(purchases)}">No purchases found.</p>
+
+<a th:href= "@{/}">back to home page</a><br>
+<a th:href= "@{/adminPage}">back to admin page</a><br>
+<script>
+
+  function confirmDelivery(){
+    let deliveryStatus = document.getElementById("status")
+    if(deliveryStatus.textContent==="Delivering"){
+      deliveryStatus.textContent = "Delivered"
+      document.getElementById("confirmButton").remove()
+    }
+
+
+  }
+
+</script>
+</body>
+</html>

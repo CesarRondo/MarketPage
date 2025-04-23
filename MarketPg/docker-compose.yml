@@ -1,0 +1,7 @@
+services:
+  app:
+    # Build the image from the Dockerfile in the current directory
+    build: .
+#     Expose the port on which your Spring Boot app is running (default is 8080)
+    ports:
+      - "8080:8080"

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<p>
+    The catalogue: This web page has a catalogue displayed when entering the home page, the way it works is by calling all products from the backend database and storing them to a thymeleaf attribute generated from a list that will be called by the html file to iteratively display the products on screen, including a Name, the price and a link to a page with more options.
+</p>
+<img src="Image1.png" alt="Image 1">
+
+<p>
+    Buying a product When a product page is accessed an id is sent to the Controller to know which product is being accessed. The server then sends all the product data to fill in the content of the page with this data, sent as different thymeleaf attributes: description, price, and name.
+</p>
+<img src="Image2.png" alt="Image 2">
+
+<p>
+    When purchase is clicked the user is sent to a fake payment page, and it is confirmed. If the user is logged in, this purchase will be stored in their history. If the purchase was done without logging in, the functionalities for the order will not be available. Users can log in by clicking on the link to the log-in link at the home page, and filling in the username and password. If the user does not have an account, the sign-up link can be clicked to a page where, by filling in the credentials, it creates a new user and automatically logs in using the log-in methods used in the log-in page.
+</p>
+<img src="Image3.png" alt="Image 3">
+
+<p>
+    Shopping Cart and userPage When the user has successfully logged in, the log-in icon at the home page is substituted by userPage (this logic is managed by thymeleaf th:if) in this page the shopping Cart is displayed on top with buttons to remove the items, add 1 or delete all. Once the amount of items is the desired, the user can press purchase to buy all of these.
+</p>
+<img src="Image4.png" alt="Image 4">
+
+<p>
+    Purchase History In the user page there is a link to an "order History", in that page, the purchases done by the user logged in will be displayed. Using thymeleaf attributes, the user will be able to see the status of the order.
+</p>
+<img src="Image5.png" alt="Image 5">
+
+<p>
+    Admin tools If the user logged in is: "ADMIN" with password "admin123", the server will know and will display an extra option. The user page that is "admin page" when clicking this link a page with all admin tools will be displayed.
+</p>
+<img src="Image6.png" alt="Image 6">
+
+<p>
+    On top of the admin page there is a section that displays: "add new product" followed by text boxes to fill in and a submit button that will update the product database via a POST request. Below that there is a list of all the products similar to the one at the home page, but this one will always contain all products. In the homepage if a product is hidden it won't be displayed. In this list below each product there will be an "edit" link that will take the admin to an edit page.
+</p>
+<img src="Image7.png" alt="Image 7">
+
+<p>
+    Edit page: The edit page is essentially just like the product page, but instead of text, there are textboxes filled in with the previous values for the item. These textboxes can be edited and the changes can be submitted to the database which will cause the visible elements on screen to change.
+</p>
+<img src="Image8.png" alt="Image 8">
+
+<p>
+    Change visibility: In the edit product page, there is a button to change the visibility that if pressed will send a post signal to do what was mentioned.
+</p>
+
+</body>
+</html>

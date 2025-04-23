@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Welcome User</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        div {
+            border: 1px solid black;
+            padding: 15px;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px 0;
+            border: 1px solid black;
+            cursor: pointer;
+        }
+        a {
+            /*text-decoration: none;*/
+        }
+    </style>
+
+
+</head>
+<body>
+
+<h2>Your Account</h2>
+<div id="logInStatus" data-logIn="${loggedIn}" style="display: none;" ></div>
+<!-- Display username and balance from sessionStorage -->
+<div>
+    <p><strong>Username:</strong> <span id="username"></span></p>
+<!--    <p><strong>Balance:</strong> <span id="balance"></span> Rondollar$</p>-->
+
+    <p>
+        <a th:href= "@{/orderHistory}">view Order history</a><br>
+    </p>
+
+    <h2>Shopping Cart</h2>
+    <ul id="basketList">
+        <!-- Basket items will be dynamically inserted here -->
+    </ul>
+
+    <p><strong>Total Price: $<span id="totalPrice">0</span></strong></p>
+    <form action="/goToPayment" method="get">
+        <input type="hidden" name="itemId" value="0">
+        <input type="hidden" name="amount" id="amount" value="0">
+        <button type="submit">Make a Purchase</button>
+    </form>
+
+    <button type="submit" onclick="logOut()" >Log Out</button>
+
+    <br th:if="${admin}">
+    <a th:if="${admin}" th:href="@{/adminPage}">Admin Page</a>
+
+
+    <p>
+        <a th:href= "@{/}">back to home page</a><br>
+    </p>
+
+</div>
+<script defer src="/userPage.js"></script>
+<!-- JavaScript to get userData from sessionStorage and populate the page -->
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Online Shop</title>
+    <style>
+        /* square */
+        .product-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        /*content inside */
+        .product {
+            width: 18%;
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .product h3 {
+            margin: 5px 0;
+        }
+
+        .product p {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<script>
+
+    window.onload = function() {
+        if (!sessionStorage.getItem('loggedIn')) {
+            sessionStorage.setItem('loggedIn', 'false');
+        }
+        if (!sessionStorage.getItem('userData')){
+            sessionStorage.setItem('userData',null)
+        }
+    }
+</script>
+<h1>Welcome to my online shop</h1>
+<!--<p>This is a paragraph.</p>-->
+
+<p th:if="${loggedIn == false}">
+    <a th:href="@{/logInPage}">Login</a><br>
+</p>
+
+<!-- Display UserPage link if loggedIn is true -->
+<p th:if="${loggedIn == true}">
+    <a th:href="@{/userPage}">Go to User Page</a><br>
+</p>
+
+<h2>Our Products</h2>
+
+<!--<div th:each="product : ${products}">-->
+<!--&lt;!&ndash;    <img th:src="${product.imageUrl}" alt="Product Image">&ndash;&gt;-->
+<!--    <h3 th:text="${product.name}"></h3>-->
+<!--    <p th:text="'$' + ${product.price}"></p>-->
+<!--    <a th:href="@{/buy/{id}(id=${product.id})}">Product Page</a>-->
+<!--</div>-->
+
+<div class="product-container">
+    <div class="product" th:each="product : ${products}">
+        <h3 th:text="${product.name}"></h3>
+        <p th:text="'$' + ${product.price}"></p>
+        <a th:href="@{/buy/{id}(id=${product.id})}">Product Page</a>
+    </div>
+</div>
+
+
+</body>
+</html>

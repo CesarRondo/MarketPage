@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <script defer src="/main.js"></script>
+  <meta charset="UTF-8">
+  <title>UserLogin</title>
+  <style>
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .login-container {
+      padding: 20px;
+      border: 1px solid black;
+      text-align: center;
+      width: 300px;
+    }
+
+    .login-container input {
+      width: 100%;
+      padding: 8px;
+      margin: 10px 0;
+      border: 1px solid black;
+    }
+
+    .login-container button {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid black;
+    }
+
+    .login-container a {
+      text-decoration: none;
+    }
+
+  </style>
+</head>
+<body>
+<div class="login-container">
+
+
+  <label for="username">User Name</label><br>
+  <input type="text" id="username"><br>
+  <label>Password</label><br>
+  <input type="text" id="password">
+  <button type="submit" onclick="userLogIn()">Submit</button>
+  <p>
+    You don't have an account?<br>
+    Create one here:
+    <a th:href="@{/signUpPage}">Sign Up</a><br>
+  </p>
+
+  <p>
+    <a th:href= "@{/}">back to home page</a><br>
+  </p>
+
+</div>
+
+</body>
+</html>
